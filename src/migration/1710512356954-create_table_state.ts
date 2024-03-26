@@ -1,9 +1,10 @@
-import { MigrationInterface, QueryRunner } from "typeorm";
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class CreateTableState1710512356954 implements MigrationInterface {
+  name: 'CreateTableState1710512356954';
 
-    public async up(queryRunner: QueryRunner): Promise<void> {
-        queryRunner.query(`
+  public async up(queryRunner: QueryRunner): Promise<void> {
+    queryRunner.query(`
             CREATE TABLE public.state(
                 id integer NOT NULL,
                 name character varying NOT NULL,
@@ -23,13 +24,12 @@ export class CreateTableState1710512356954 implements MigrationInterface {
             ALTER SEQUENCE public.state_id_seq OWNED BY public.state.id;
 
             ALTER TABLE ONLY public.state ALTER COLUMN id SET DEFAULT nextval('public.state_id_seq'::regclass);
-        `)
-    }
+        `);
+  }
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-        queryRunner.query(`
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    queryRunner.query(`
             drop table public.state;
-        `)
-    }
-
+        `);
+  }
 }
