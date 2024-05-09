@@ -10,7 +10,7 @@ import { AddressModule } from './address/address.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: ['.env.development.local']
+      envFilePath: ['.env'],
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -19,9 +19,9 @@ import { AddressModule } from './address/address.module';
       password: process.env.DB_PASSWORD,
       port: Number(process.env.DB_PORT),
       username: process.env.DB_NAME,
-      entities: [`${__dirname}/**/*.entity{.js,.ts}`],
-      migrations: [`${__dirname}/migration/{.ts,*.js}`],
-      migrationsRun: true
+      entities: ['dist/**/*.entity{.ts,.js}'],
+      migrations: ['dist/migrations/*{.ts,.js}'],
+      migrationsRun: true,
     }),
     UserModule,
     StateModule,
